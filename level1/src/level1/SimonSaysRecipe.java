@@ -22,6 +22,7 @@ public class SimonSaysRecipe extends KeyAdapter {
  	private int tries = 0;
  	private int simonSays = 0;
  	Date timeAtStart;
+	int points = 0;
  	private  void makeAlbum() {
  // 2. add 4 images which match keyboard keys like this: images.put(new Integer(KeyEvent.VK_UP), "image.jpg");
  		images.put(new Integer(KeyEvent.VK_UP), "computer_key_Arrow_Up.png");
@@ -36,7 +37,6 @@ public class SimonSaysRecipe extends KeyAdapter {
 	public void keyPressed(KeyEvent e) {
     	int keyCode = e.getKeyCode();
     	// 16. make a points variable to track the score. tell the user their score at the end.
-    	int points = 0;
     	//17. if the keyCode matches the imageIndex and "Simon says..."  increase their score
         if (keyCode == imageIndex && simonSays == 0)
         {
@@ -48,14 +48,22 @@ public class SimonSaysRecipe extends KeyAdapter {
         	points+=1;
         	speak("correct");
         }
-    	//18.   if the keyCode doesn't match the imageIndex and "Simon didn't say..."  increase their score	
+        if (keyCode != imageIndex && simonSays == 0)
+        {
+        	speak("incorrect");
+        }
+        if (keyCode == imageIndex && simonSays == 1)
+        {
+        	speak("incorrect");
+        }
+    	//18.   if the keyCode doesn't match the imageIndex and "Simon didn't say..."  increase their score
     	//19. Use the speak method to tell the user if they were correct or not
     	//13. increment tries by 1
   	    tries += 1;
     	//14. if tries is greater than 9 (or however many you want)
     	if (tries > 9)
     	{
-    		 JOptionPane.showMessageDialog(null, "Your score is " + points);
+    		 JOptionPane.showMessageDialog(null, "You got " + points + " correct out of 10");
     		System.exit(0);
     	}
     	//15.    	exit the program
@@ -79,7 +87,7 @@ public class SimonSaysRecipe extends KeyAdapter {
 	
    	 //10. Use the speak method to either say "Simon says press this key" or "Press this key"
     	//Hint: use the simonSays int and a random number
-	int simonSays = new Random().nextInt(2);
+	simonSays = new Random().nextInt(2);
 	if (simonSays == 0)
 	{
 		speak("Simon says press this key");
@@ -110,13 +118,4 @@ public class SimonSaysRecipe extends KeyAdapter {
 	}
 }
 
-/* 
-* 20. add a timer
-* ~~~ where the code starts running ~~~
-* timeAtStart = new Date();
-*
-* ~~~ where the code ends ~~~
-* Date timeAtEnd = new Date();
-* System.out.println((timeAtEnd.getTime()-timeAtStart.getTime())/1000);
-* System.exit(0);
-*/
+
