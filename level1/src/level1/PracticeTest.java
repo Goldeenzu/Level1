@@ -22,13 +22,16 @@ public static void main(String[] args){
 	PracticeTest x = new PracticeTest();
 }
 PracticeTest(){
-	JFrame frame = new JFrame("oh wow it's a riddle");
-	JPanel panel = new JPanel();
-	JLabel riddle = new JLabel("What's 2 + 2?");
-	JTextField answer = new JTextField(5);
-	JButton submit = new JButton("SUBMIT");
-	JButton hint = new JButton("HINT");
-	frame.setVisible(true);
+	frame = new JFrame("oh wow it's a riddle");
+	panel = new JPanel();
+	riddle = new JLabel("What's 2 + 2?");
+	answer = new JTextField(5);
+	submit = new JButton("SUBMIT");
+	hint = new JButton("HINT");
+	frame.setVisible(true); 
+	
+	
+	
 	frame.setSize(300, 300);
 	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	frame.add(panel);
